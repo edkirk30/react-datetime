@@ -53,6 +53,7 @@ var DateTimePickerDays = createClass({
 	},
 
 	renderDays: function() {
+
 		var date = this.props.viewDate,
 			selected = this.props.selectedDate && this.props.selectedDate.clone(),
 			prevMonth = date.clone().subtract( 1, 'months' ),
@@ -91,7 +92,8 @@ var DateTimePickerDays = createClass({
 			dayProps = {
 				key: prevMonth.format( 'M_D' ),
 				'data-value': prevMonth.date(),
-				className: classes
+				className: classes,
+        fullProps: this.props,
 			};
 
 			if ( !isDisabled )

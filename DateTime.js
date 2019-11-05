@@ -47,7 +47,7 @@ var Datetime = createClass({
 
 	getInitialState: function() {
 		this.checkTZ( this.props );
-		
+
 		var state = this.getStateFromProps( this.props );
 
 		if ( state.open === undefined )
@@ -74,6 +74,7 @@ var Datetime = createClass({
 	},
 
 	getStateFromProps: function( props ) {
+
 		var formats = this.getFormats( props ),
 			date = props.value || props.defaultValue,
 			selectedDate, viewDate, updateOn, inputValue
@@ -216,6 +217,7 @@ var Datetime = createClass({
 	},
 
 	onInputChange: function( e ) {
+
 		var value = e.target === null ? e : e.target.value,
 			localMoment = this.localMoment( value, this.state.inputFormat ),
 			update = { inputValue: value }
@@ -229,7 +231,8 @@ var Datetime = createClass({
 		}
 
 		return this.setState( update, function() {
-			return this.props.onChange( localMoment.isValid() ? localMoment : this.state.inputValue );
+			return this.props.onChange( localMoment.isValid() ? localMoment : this.state.inputValue
+        );
 		});
 	},
 
@@ -310,6 +313,7 @@ var Datetime = createClass({
 				inputValue: date.format( state.inputFormat )
 			});
 		}
+
 		this.props.onChange( date );
 	},
 
@@ -320,6 +324,8 @@ var Datetime = createClass({
 			currentDate = this.state.selectedDate || viewDate,
 			date
 			;
+
+    const ctrlPressed = !!e.ctrlKey;
 
 		if (target.className.indexOf('rdtDay') !== -1) {
 			if (target.className.indexOf('rdtNew') !== -1)
@@ -364,7 +370,7 @@ var Datetime = createClass({
 			}
 		}
 
-		this.props.onChange( date );
+		this.props.onChange( date, ctrlPressed );
 	},
 
 	openCalendar: function( e ) {
@@ -416,7 +422,7 @@ var Datetime = createClass({
 	},
 
 	componentProps: {
-		fromProps: ['value', 'isValidDate', 'renderDay', 'renderMonth', 'renderYear', 'timeConstraints'],
+		fromProps: ['value', 'multiValue', 'isValidDate', 'renderDay', 'renderMonth', 'renderYear', 'timeConstraints'],
 		fromState: ['viewDate', 'selectedDate', 'updateOn'],
 		fromThis: ['setDate', 'setTime', 'showView', 'addTime', 'subtractTime', 'updateSelectedDate', 'localMoment', 'handleClickOutside']
 	},
