@@ -93,7 +93,8 @@ var DateTimePickerDays = createClass({
 				key: prevMonth.format( 'M_D' ),
 				'data-value': prevMonth.date(),
 				className: classes,
-        fullProps: this.props,
+        multiValue: this.props.multiValue,
+        extraDayClasses: this.props.extraDayClasses,
 			};
 
 			if ( !isDisabled )
